@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PKI Now provides digital certificates, PKI automation, and integration services with over 25 years of expertise.">
+  <title>PKI Now | Digital Certificates and PKI Automation Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background: #eef2f7; color: #333; }
+    header {
+      background: linear-gradient(90deg, #0a3d62, #0984e3);
+      padding: 20px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .header-top {
+      display: block;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    header img { height: 80px; }
+    header .text { display: flex; flex-direction: column; }
+    header h1 { margin: 0; font-size: 2em; }
+    header p { margin: 5px 0 0; font-size: 1em; color: #ffeaa7; }
+
+    nav {
+      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+      padding: 10px 15px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+    nav a:hover { background-color: #74b9ff; transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); }
+
+    section.hero {
+      padding: 80px 20px;
+      text-align: center;
+      background: url('https://images.unsplash.com/photo-1548092372-0d1bd40894a3?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=philipp-katzenberger-iIJrUoeRoCQ-unsplash.jpg?fit=crop&w=1400&q=80') no-repeat center/cover;
+      color: white;
+    }
+    section.hero h1 { font-size: 2em; margin-bottom: 20px; }
+    section.hero p { font-size: 1.2em; background: rgba(0,0,0,0.5); display: inline-block; padding: 10px 20px; border-radius: 10px; }
+
+    .button {
+      display: block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #0984e3;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      margin: 20px auto;
+      width: 7rem;
+    }
+    .button:hover { background-color: #0a3d62; }
+
+    section.services, section.certificates {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 300px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .card img-title { width: 60px; margin-bottom: 15px; transition: transform 0.3s; }
+    .card:hover img-title { transform: scale(1.2); }
+    .card h3 { margin-top: 0; }
+
+    footer {
+      background: #0a3d62;
+      padding: 20px;
+      color: white;
+      text-align: center;
+      margin-top: 40px;
+    }
+    footer a { color: #74b9ff; }
+
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+      .header-top {
+        justify-content: flex-start;
+      }
+      nav {
+        margin-top: 0;
+        justify-content: flex-end;
+      }
+      section.hero h1 { font-size: 3em; }
+      section.hero p { font-size: 1.4em; }
+    }
+      .striped:nth-child(even) {
+    background-color: #f7f9fc;
+  }
+  .striped:nth-child(odd) {
+    background-color: #ffffff;
+  }
+  .striped {
+    padding: 80px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+  }
+
+  .striped img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 12px;
+  }
+  .striped-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  @media (min-width: 768px) {
+    .striped-content {
+      flex-direction: row;
+      text-align: left;
+    }
+    .striped-content img {
+      flex: 1;
+    }
+    .striped-content .text {
+      flex: 2;
+    }
+  }
+  .quiz-container {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+  }
+  .quiz-question {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .quiz-options button {
+    background-color: #0984e3;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .quiz-options button:hover {
+    background-color: #0a3d62;
+  }
+  .quiz-result {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .back-to-top {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #0a3d62;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    transition: opacity 0.3s, background-color 0.3s;
+  }
+
+  .back-to-top:hover {
+    opacity: 1;
+    background-color: #0984e3;
+  }
+  .contact a:hover {
+    background-color: #218838;
+  }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <img src="img/logo2.png" alt="PKI Now Logo">
+    <div class="text">
+      <p>Your Trusted Partner for Digital Certificates and PKI Automation</p>
+    </div>
+  </div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Fast, Reliable, and Secure PKI Solutions</h1>
+    <p>Experts in automation, integration, and digital certificate delivery — with over 25 years of experience.</p>
+<!--    <a href="#services" class="button">Explore Services</a>-->
+  </div>
+</section>
+
+<section id="services" class="services">
+  <h2>Our Services</h2>
+  <div class="card-container">
+    <a href="#integration" class="card">
+      <img src="img/bot.png" alt="Integration">
+      <h3>Application Integration</h3>
+      <p>Quickly integrate certificate issuance into your applications with minimal disruption and maximum speed.</p>
+    </a>
+    <a href="#delivery" class="card">
+      <img src="img/clock.png" alt="Efficiency">
+      <h3>Fast Delivery</h3>
+      <p>We prioritize fast and effective handling of all your certificate requests to keep your operations running smoothly.</p>
+    </a>
+    <a href="#expertise" class="card">
+      <img src="img/medal.png" alt="Expertise" style="height: 100px; width: 100px">
+      <h3>Expert Staff</h3>
+      <p>Benefit from our team's deep knowledge, with over 25 years of hands-on PKI industry experience.</p>
+    </a>
+    <a href="#automation" class="card">
+      <img src="img/robot.png" alt="Automation">
+      <h3>PKI Automation Consulting</h3>
+      <p>Streamline your processes and automate digital certificate management across your organization.</p>
+    </a>
+  </div>
+</section>
+
+<section id="ready-started" style="padding: 80px 20px; text-align: center; background-color: #eef3f8;">
+  <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to get started?</h2>
+  <p style="font-size: 1.2rem; margin-bottom: 40px;">Contact us today to discuss your project!</p>
+  <a href="#contact" style="background-color: #007bff; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-size: 1.2rem; transition: background-color 0.3s;">
+    Contact Us
+  </a>
+</section>
+
+
+<section id="certificates" class="certificates">
+  <h2>SSL/TLS Certificates We Offer</h2>
+  <div class="card-container">
+    <div class="card" id="Basic SSL">
+      <h3>One Domain</h3>
+      <a href="https://affiliates.ssl.com/1596-4-1-98.html" target="_blank"><img style="border:0px;border-radius:5px" src="https://affiliates.ssl.com/media/banners/Basic-SSL-240x400.jpg" width="240" height="400" alt=""></a>
+    </div>
+    <div class="card" id="Premium SSL">
+      <h3>3 Domains</h3>
+      <a href="https://affiliates.ssl.com/1596-7-1-82.html" target="_blank"><img style="border:0px" src="https://affiliates.ssl.com/media/banners/Premium-SSL-240x400.jpg" width="240" height="400" alt=""></a>
+    </div>
+    <div class="card" id="Wildcard SSL">
+      <h3>Wildcard (*.your-domain)</h3>
+      <a href="https://affiliates.ssl.com/1596-2-1-51.html" target="_blank"><img style="border:0px" src="https://affiliates.ssl.com/media/banners/Wildcard-SSL-240x400.jpg" width="240" height="400" alt=""></a>
+    </div>
+    <div class="card" id="Enterprise EV SSL">
+      <h3>Enterprise Validated - One Domain</h3>
+      <a href="https://affiliates.ssl.com/1596-5-1-66.html" target="_blank"><img style="border:0px" src="https://affiliates.ssl.com/media/banners/Enterprise-EV-SSL-240x400.jpg" width="240" height="400" alt=""></a>
+    </div>
+    <div class="card" id="Enterprise EV UCC SSL">
+      <h3>Enterprise Validated - Multiple Domains</h3>
+      <a href="https://affiliates.ssl.com/1596-6-1-112.html" target="_blank"><img style="border:0px" src="https://affiliates.ssl.com/media/banners/EV-UCC-SSL-240x400.jpg" width="240" height="400" alt=""></a>
+    </div>
+    <div class="card" id="UCC SSL">
+      <h3>Multiple subdomains with wildcard</h3>
+      <a href="https://affiliates.ssl.com/1596-3-1-35.html" target="_blank"><img style="border:0px" src="https://affiliates.ssl.com/media/banners/UCC-SSL-240x400.jpg" width="240" height="400" alt=""></a>
+    </div>
+  </div>
+</section>
+
+<section id="special-certificates" class="certificates">
+  <h2>Special Certificates</h2>
+  <div class="card-container" style="margin-top: 15px">
+    <div class="card">
+      <img src="img/code-file.png" alt="Code Signing">
+      <h3>Code Signing Certificates</h3>
+      <p>Protect your software and build user trust by signing code with certified digital signatures.</p>
+      <a href="https://affiliates.ssl.com/1596.html" class="button" target="_blank">Buy Now</a>
+    </div>
+    <div class="card">
+      <img src="img/secured-letter.png" alt="Email Security">
+      <h3>Email Security Certificates (S/MIME)</h3>
+      <p>Ensure the confidentiality and authenticity of your business emails.</p>
+      <a href="https://affiliates.ssl.com/1596.html" class="button" target="_blank">Buy Now</a>
+    </div>
+    <div class="card">
+      <img src="img/pdf.png" alt="Document Signing">
+      <h3>Document Signing Certificates</h3>
+      <p>Sign important documents digitally with legal validity and full compliance.</p>
+      <a href="https://affiliates.ssl.com/1596.html" class="button" target="_blank">Buy Now</a>
+    </div>
+    <div class="card">
+      <img src="img/client-auth.png" alt="Client Authentication">
+      <h3>Client Authentication</h3>
+      <p>Require ClientAuth Certificates and integrate with your existing SSO (Single Sign On) systems.</p>
+      <a href="https://affiliates.ssl.com/1596.html" class="button" target="_blank">Buy Now</a>
+    </div>
+  </div>
+</section>
+
+<section id="need-help" style="padding: 80px 20px; text-align: center; background-color: #dce6f1;">
+  <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Need help to decide, install, or configure your certificate?</h2>
+  <p style="font-size: 1.2rem; margin-bottom: 40px;">Our experts are ready to assist you at every step of the way.</p>
+  <a href="#contact" style="background-color: #0a3d62; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-size: 1.2rem; transition: background-color 0.3s;">
+    Get Help
+  </a>
+</section>
+
+
+<section id="integration" class="services striped">
+  <h2>Application Integration</h2>
+  <div class="striped-content">
+    <img src="img/integration.jpg " alt="Application Integration">
+    <div class="text">
+      <p>We make it easy to integrate PKI and digital certificate services into your applications.</p>
+      <p>Our experts work closely with your development and IT teams to design seamless, secure integrations that support high-availability systems, cloud environments, and agile workflows.</p>
+      <p>Whether you use REST APIs, automation tools, or need a custom connector, PKI Now delivers fast and safe deployments.</p>
+    </div>
+  </div>
+  <a href="#services" class="back-to-top" aria-label="Back to top">↑ Top</a>
+
+</section>
+
+<section id="delivery" class="services striped">
+  <h2>Fast Delivery</h2>
+  <div class="striped-content">
+    <img src="img/delivery.jpg" alt="Fast Delivery">
+    <div class="text">
+      <p>PKI Now prioritizes speed without sacrificing quality.</p>
+      <p>We have optimized certificate issuance and renewal processes to ensure your business operations continue smoothly.</p>
+      <p>Through automation, streamlined validation, and advanced queueing systems, we minimize turnaround times and avoid disruptions.</p>
+      <p>Get your certificates when you need them — not weeks later.</p>
+    </div>
+  </div>
+  <a href="#services" class="back-to-top" aria-label="Back to top">↑ Top</a>
+</section>
+
+<section id="expertise" class="services striped">
+  <h2>Expert Staff</h2>
+  <div class="striped-content">
+    <img src="img/expert-staff.jpeg" alt="Expert Staff">
+    <div class="text">
+      <p>Our team brings over 25 years of real-world PKI experience across industries such as finance, healthcare, tech, and government.</p>
+      <p>From designing public key infrastructures to integrating complex identity ecosystems, we offer hands-on expertise that drives results.</p>
+      <p>Trust our consultants to provide not just technical knowledge, but strategic advice that protects and empowers your organization.</p>
+    </div>
+  </div>
+  <a href="#services" class="back-to-top" aria-label="Back to top">↑ Top</a>
+</section>
+
+<section id="automation" class="services striped">
+  <h2>PKI Automation Consulting</h2>
+  <div class="striped-content">
+    <img src="img/consultant.jpg" alt="PKI Automation">
+    <div class="text">
+      <p>Manual management of certificates is slow, costly, and risky.</p>
+      <p>PKI Now helps organizations automate their entire certificate lifecycle: discovery, monitoring, issuance, renewal, and revocation.</p>
+      <p>We design modern, scalable automation using industry standards like ACME protocols, API orchestration, and intelligent workflows — all tailored to your infrastructure.</p>
+    </div>
+  </div>
+  <a href="#services" class="back-to-top" aria-label="Back to top">↑ Top</a>
+</section>
+
+<!--<section id="certificate-quiz" class="services">-->
+<!--  <h2>What is the Right Certificate for Me?</h2>-->
+<!--  <div class="quiz-container">-->
+<!--    <div id="quiz-question" class="quiz-question">-->
+<!--      <p>What do you need the certificate for?</p>-->
+<!--      <div class="quiz-options">-->
+<!--        <button onclick="nextQuestion('basic')">Secure one domain (URL)</button>-->
+<!--        <button onclick="nextQuestion('premium')">Secure up to 3 domains</button>-->
+<!--        <button onclick="nextQuestion('wildcard')">Protect more than 3 domains</button>-->
+<!--        <button onclick="nextQuestion('enterprise-ev')">Enterprise validation</button>-->
+<!--        <button onclick="nextQuestion('enterprise-ev-ucc')">Enterprise validation for multiple domains</button>-->
+<!--        <button onclick="nextQuestion('ucc')">Multi-Domain UCC/SAN SSL</button>-->
+<!--        <button onclick="nextQuestion('code')">Code Signing</button>-->
+<!--        <button onclick="nextQuestion('smime')">Email Security (S/MIME)</button>-->
+<!--        <button onclick="nextQuestion('document')">Document Signing</button>-->
+<!--        <button onclick="nextQuestion('client')">Client Authentication</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div id="quiz-result" class="quiz-result" style="display: none;">-->
+<!--      <h3>Recommended Certificate:</h3>-->
+<!--      <p id="certificate-recommendation"></p>-->
+<!--      <a href="" class="button" id="buy-rec" target="_blank">Buy Now</a>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+<section id="contact" style="padding: 60px 20px; text-align: center; background-color: #f7f9fc;">
+  <h2>Contact Us</h2>
+  <p style="margin-bottom: 30px;">We are here to help you with any questions or requests.</p>
+  <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+
+    <a href="mailto:sales@pkinow.com" style="text-decoration: none; color: inherit;">
+      <div style="background: white; padding: 20px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; transition: transform 0.3s, box-shadow 0.3s;">
+        <img src="img/new-post.png" alt="Email Icon" style="width: 60px; margin-bottom: 10px;">
+        <p>sales@pkinow.com</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+
+
+<footer>
+  <p>&copy; 2025 PKI Now. All Rights Reserved.</p>
+</footer>
+<script>
+function nextQuestion(choice) {
+  const mapping = {
+    "basic": {
+      "recommendation": "Basic SSL",
+      "url": "https://affiliates.ssl.com/1596-4-1-98.html"
+    },
+    "premium": {
+      "recommendation": "Premium SSL",
+      "url": "https://affiliates.ssl.com/1596-7-1-82.html"
+    },
+    "wildcard": {
+      "recommendation": "Wildcard SSL",
+      "url": "https://affiliates.ssl.com/1596-2-1-51.html"
+    },
+    "enterprise-ev": {
+      "recommendation": "Enterprise EV SSL",
+      "url": "https://affiliates.ssl.com/1596-5-1-66.html"
+    },
+    "enterprise-ev-ucc": {
+      "recommendation": "Enterprise EV UCC SSL",
+      "url": "https://affiliates.ssl.com/1596-6-1-112.html"
+    },
+    "ucc": {
+      "recommendation": "UCC SSL",
+      "url": "https://affiliates.ssl.com/1596-3-1-35.html"
+    },
+    "code": {
+      "recommendation": "Code Signing",
+      "url": "https://affiliates.ssl.com/1596.html"
+    },
+    "smime": {
+      "recommendation": "Email Security (S/MIME)",
+      "url": "https://affiliates.ssl.com/1596.html"
+    },
+    "document": {
+      "recommendation": "Document Signing",
+      "url": "https://affiliates.ssl.com/1596.html"
+    },
+    "client": {
+      "recommendation": "Client Authentication",
+      "url": "https://affiliates.ssl.com/1596.html"
+    }
+  };
+
+  document.getElementById('quiz-question').style.display = 'none';
+  document.getElementById('quiz-result').style.display = 'block';
+  document.getElementById('certificate-recommendation').innerText = mapping[choice]["recommendation"];
+  document.getElementById('buy-rec').href = mapping[choice]["url"];
+}
+</script>
+
+
+</body>
+</html>
