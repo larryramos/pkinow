@@ -8,15 +8,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background: #eef2f7; color: #333; }
+<!--    header {-->
+<!--      background: linear-gradient(90deg, #0a3d62, #0984e3);-->
+<!--      padding: 20px;-->
+<!--      color: white;-->
+<!--      display: flex;-->
+<!--      flex-direction: column;-->
+<!--      align-items: center;-->
+<!--      text-align: center;-->
+<!--    }-->
+
     header {
-      background: linear-gradient(90deg, #0a3d62, #0984e3);
-      padding: 20px;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #0a3d62, #0984e3);
+  padding: 10px 20px;
+  color: white;
+}
+
+
+
+
     .header-top {
       display: block;
       align-items: center;
@@ -46,6 +59,50 @@
       transition: all 0.3s ease;
     }
     nav a:hover { background-color: #74b9ff; transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); }
+
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Hamburger button hidden by default */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #2d3436;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #00000077;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
 
     section.hero {
       padding: 80px 20px;
@@ -223,6 +280,50 @@
   .contact a:hover {
     background-color: #218838;
   }
+    .email-button-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+.email-button {
+  background-color: #0984e3;
+  color: white;
+  font-size: 24px;
+  padding: 14px 18px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s;
+}
+
+.email-button:hover {
+  background-color: #74b9ff;
+}
+
+.email-tooltip {
+  margin-right: 10px;
+  background-color: #333;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.email-button-container:hover .email-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
   </style>
 </head>
 <body>
@@ -234,7 +335,9 @@
       <p>Your Trusted Partner for Digital Certificates and PKI Automation</p>
     </div>
   </div>
-  <nav>
+  <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+
+  <nav class="nav-links">
     <a href="#services">Services</a>
     <a href="#certificates">Certificates</a>
     <a href="#contact">Contact</a>
@@ -448,12 +551,27 @@
   </div>
 </section>
 
+<div class="email-button-container">
+  <a href="#contact" class="email-button" aria-label="Contact us">
+    ✉️
+  </a>
+  <span class="email-tooltip">We are very fast to reply!</span>
+</div>
+
 
 
 <footer>
   <p>&copy; 2025 PKI Now. All Rights Reserved.</p>
 </footer>
 <script>
+ document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    toggleButton.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  });
 function nextQuestion(choice) {
   const mapping = {
     "basic": {
